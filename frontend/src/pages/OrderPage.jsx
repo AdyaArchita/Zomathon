@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Minus, Plus, ChevronRight, ShoppingBag } from 'lucide-react';
+import { Minus, Plus, ChevronRight, ShoppingBag, Tag } from 'lucide-react';
 import { getFoodImage } from '../utils/ImageHelper';
 
 const OrderPage = () => {
@@ -76,8 +76,24 @@ const OrderPage = () => {
           </div>
         ))}
 
-        {/* 2. Bill Summary */}
-        <div className="mt-4 pt-4 border-t-2 border-dashed border-gray-100 space-y-2">
+        {/* 2. Coupon Section */}
+        <div className="mt-4 pt-4 border-t border-gray-100">
+          <button className="w-full flex items-center justify-between bg-white border border-gray-200 rounded-2xl p-4 shadow-sm active:scale-[0.98] transition-all">
+            <div className="flex items-center space-x-3">
+              <div className="bg-red-50 p-2 rounded-xl">
+                <Tag size={20} className="text-red-500" />
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-sm font-black text-gray-800">Apply Coupon</span>
+                <span className="text-[10px] font-bold text-gray-400 mt-0.5">Save ₹50 or more</span>
+              </div>
+            </div>
+            <ChevronRight size={20} className="text-gray-300" />
+          </button>
+        </div>
+
+        {/* 3. Bill Summary */}
+        <div className="mt-6 pt-6 border-t-2 border-dashed border-gray-100 space-y-2">
           <div className="flex justify-between text-[10px] font-bold text-gray-400 uppercase tracking-widest">
             <span>Item Total</span>
             <span>₹{totalAmount}</span>
@@ -119,6 +135,7 @@ const OrderPage = () => {
                     src={getFoodImage(item.name)}
                     className="w-full h-full object-cover"
                     alt={item.name}
+                    loading="lazy"
                     onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=150&q=80"; }}
                   />
                 </div>

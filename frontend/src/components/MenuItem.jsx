@@ -33,6 +33,7 @@ const MenuItem = ({ item, restaurantId }) => {
             src={getFoodImage(item.name)}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             alt={item.name}
+            loading="lazy"
             onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=150&q=80"; }}
           />
         </div>

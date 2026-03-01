@@ -118,6 +118,7 @@ const HomePage = ({ location = "Bhubaneswar" }) => {
                   src={`/assets/Restaurants/${res.restaurant_name?.replace(/\d+$/, '').trim()}.jpg`}
                   alt={res.restaurant_name}
                   className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
                   onError={(e) => {
                     e.target.src = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80";
                   }}

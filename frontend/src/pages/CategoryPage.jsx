@@ -54,7 +54,7 @@ const CategoryPage = () => {
 
             return (
               <div key={item.item_id} className="flex justify-between items-start pb-10 border-b border-gray-100 last:border-0 relative group">
-                
+
                 {/* LEFT SIDE: Content */}
                 <div className="flex-1 pr-4 text-left">
                   <div className="flex items-start space-x-2 mb-1.5">
@@ -63,30 +63,31 @@ const CategoryPage = () => {
                     </div>
                     <h3 className="font-black text-gray-800 text-lg leading-tight">{item.name}</h3>
                   </div>
-                  
+
                   <div className="ml-6">
-                      <div className="flex items-center space-x-2">
-                          <p className="text-sm font-black text-gray-900">₹{item.price}</p>
-                          {item.price > 350 && (
-                              <span className="text-[9px] font-black text-white bg-orange-400 px-1.5 py-0.5 rounded uppercase tracking-tighter">Bestseller</span>
-                          )}
-                      </div>
-                      <p className="text-xs text-gray-400 mt-2 line-clamp-2 leading-relaxed font-medium">
-                          {item.description.includes('|') ? item.description.split('|').pop().trim() : item.description}
-                      </p>
-                      <div className="mt-4 inline-flex items-center px-2 py-1 bg-gray-50 rounded-lg border border-gray-100">
-                          <span className="text-[9px] text-gray-400 font-black uppercase tracking-widest leading-none">{item.restaurant_name}</span>
-                      </div>
+                    <div className="flex items-center space-x-2">
+                      <p className="text-sm font-black text-gray-900">₹{item.price}</p>
+                      {item.price > 350 && (
+                        <span className="text-[9px] font-black text-white bg-orange-400 px-1.5 py-0.5 rounded uppercase tracking-tighter">Bestseller</span>
+                      )}
+                    </div>
+                    <p className="text-xs text-gray-400 mt-2 line-clamp-2 leading-relaxed font-medium">
+                      {item.description.includes('|') ? item.description.split('|').pop().trim() : item.description}
+                    </p>
+                    <div className="mt-4 inline-flex items-center px-2 py-1 bg-gray-50 rounded-lg border border-gray-100">
+                      <span className="text-[9px] text-gray-400 font-black uppercase tracking-widest leading-none">{item.restaurant_name}</span>
+                    </div>
                   </div>
                 </div>
 
                 {/* RIGHT SIDE: Visuals */}
                 <div className="relative flex-shrink-0">
                   <div className="w-36 h-36 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-gray-50">
-                    <img 
-                      src={getFoodImage(item.name)} 
+                    <img
+                      src={getFoodImage(item.name)}
                       alt={item.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
                       onError={(e) => { e.target.src = "https://via.placeholder.com/300?text=Food+Image"; }}
                     />
                   </div>
@@ -94,7 +95,7 @@ const CategoryPage = () => {
                   {/* 3. DYNAMIC BUTTON TOGGLE */}
                   <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 shadow-xl rounded-xl overflow-hidden ring-4 ring-white min-w-[100px] bg-white">
                     {quantity === 0 ? (
-                      <button 
+                      <button
                         onClick={() => addToCart(item, item.restaurant_id)}
                         className="w-full bg-white text-green-600 font-black py-2.5 text-xs uppercase transition-all active:scale-95 flex items-center justify-center px-6"
                       >
@@ -102,16 +103,16 @@ const CategoryPage = () => {
                       </button>
                     ) : (
                       <div className="flex items-center justify-between py-2 px-2 text-green-600">
-                        <button 
+                        <button
                           onClick={() => removeFromCart(item.item_id)}
                           className="p-1 hover:bg-gray-50 rounded-md active:scale-125 transition-transform"
                         >
                           <Minus size={16} strokeWidth={3} />
                         </button>
-                        
+
                         <span className="text-sm font-black text-gray-800 px-2">{quantity}</span>
-                        
-                        <button 
+
+                        <button
                           onClick={() => addToCart(item, item.restaurant_id)}
                           className="p-1 hover:bg-gray-100 rounded-md active:scale-125 transition-transform"
                         >
@@ -137,7 +138,7 @@ const CategoryPage = () => {
         <div className="fixed bottom-24 left-4 right-4 bg-[#E23744] text-white p-4 rounded-2xl flex justify-between items-center shadow-2xl z-50 animate-slide-up">
           <div className="flex flex-col text-left">
             <span className="text-[10px] font-black uppercase tracking-widest opacity-90">
-                {totalQty} ITEM{totalQty > 1 ? 'S' : ''} ADDED
+              {totalQty} ITEM{totalQty > 1 ? 'S' : ''} ADDED
             </span>
             <span className="text-lg font-black tracking-tighter">₹{totalAmount}</span>
           </div>

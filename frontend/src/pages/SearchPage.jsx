@@ -98,11 +98,12 @@ const SearchPage = () => {
                                     <div key={item.item_id} className="flex items-center justify-between group">
                                         <div className="flex items-center flex-1">
                                             <div className="w-20 h-20 bg-gray-50 rounded-2xl mr-4 overflow-hidden border border-gray-100 flex-shrink-0">
-                                                <img 
-                                                    src={getFoodImage(item.name)} 
+                                                <img
+                                                    src={getFoodImage(item.name)}
                                                     className="w-full h-full object-cover"
                                                     alt={item.name}
-                                                    onError={(e) => {e.target.src = "https://via.placeholder.com/150"}}
+                                                    loading="lazy"
+                                                    onError={(e) => { e.target.src = "https://via.placeholder.com/150" }}
                                                 />
                                             </div>
                                             <div className="text-left">
@@ -116,11 +117,11 @@ const SearchPage = () => {
                                                 <p className="text-xs font-black text-gray-900 mt-1">₹{item.price}</p>
                                             </div>
                                         </div>
-                                        
+
                                         {/* 3. DYNAMIC TOGGLE BUTTON */}
                                         <div className="shadow-lg rounded-xl overflow-hidden min-w-[100px] bg-white border border-gray-100">
                                             {quantity === 0 ? (
-                                                <button 
+                                                <button
                                                     onClick={() => addToCart(item, item.restaurant_id)}
                                                     className="w-full bg-white text-green-600 font-black py-2 px-6 text-[10px] uppercase transition-all active:scale-95"
                                                 >
@@ -128,14 +129,14 @@ const SearchPage = () => {
                                                 </button>
                                             ) : (
                                                 <div className="flex items-center justify-between py-1.5 px-2 text-green-600">
-                                                    <button 
+                                                    <button
                                                         onClick={() => removeFromCart(item.item_id)}
                                                         className="p-1 hover:bg-gray-50 rounded-md active:scale-125 transition-transform"
                                                     >
                                                         <Minus size={14} strokeWidth={3} />
                                                     </button>
                                                     <span className="text-xs font-black text-gray-800 px-2">{quantity}</span>
-                                                    <button 
+                                                    <button
                                                         onClick={() => addToCart(item, item.restaurant_id)}
                                                         className="p-1 hover:bg-gray-50 rounded-md active:scale-125 transition-transform"
                                                     >

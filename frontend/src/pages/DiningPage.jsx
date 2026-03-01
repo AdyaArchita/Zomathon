@@ -85,7 +85,7 @@ const DiningPage = ({ location }) => {
                 <div className="flex space-x-4 overflow-x-auto no-scrollbar pb-2">
                     {collections.map((col, index) => (
                         <div key={index} className="flex-shrink-0 relative w-44 h-56 rounded-[2.5rem] overflow-hidden shadow-lg">
-                            <img src={col.image} alt={col.title} className="w-full h-full object-cover" />
+                            <img src={col.image} alt={col.title} loading="lazy" className="w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
                             <div className="absolute bottom-5 left-5 text-white">
                                 <h4 className="font-black text-sm tracking-tight leading-tight">{col.title}</h4>
@@ -116,6 +116,7 @@ const DiningPage = ({ location }) => {
                                     src={`/assets/Restaurants/${res.restaurant_name?.replace(/\d+$/, '').trim()}.jpg`}
                                     alt={res.restaurant_name}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    loading="lazy"
                                     onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80"; }}
                                 />
                                 <div className="absolute top-4 left-0 bg-blue-600 text-white px-4 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-r-2xl shadow-lg">
